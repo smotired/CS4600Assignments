@@ -33,20 +33,13 @@ class CurveDrawer {
 
 		// [TO-DO] This is where you can create and set the contents of the vertex buffer object
 		// for the vertex attribute we need.
-
-		// we will represent it as lines i guess so each point appears twice except first and last
-		const lines = [ tv[0] ];
-		for (let i = 1; i < tv.length - 1; i++) {
-			lines.push(tv[i]);
-			lines.push(tv[i]);
-		}
-		lines.push(tv[-1]);
-		this.lineCount = lines.length / 2; // lines.length is the number of vertices and we have 2 lines per vertex
+		
+		this.pointCount = tv.length; 
 
 		// Set up the vertex buffer
 		this.vertexBuffer = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(lines), gl.STATIC_DRAW);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(tv), gl.STATIC_DRAW);
 	}
 	setViewport( width, height )
 	{
@@ -94,7 +87,7 @@ class CurveDrawer {
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.vertexBuffer);
 		gl.vertexAttribPointer(
 			this.t,
-			2,
+			1,
 			gl.FLOAT,
 			false,
 			0,
@@ -103,7 +96,7 @@ class CurveDrawer {
 		gl.enableVertexAttribArray(this.t)
 
 		// Draw the lines
-		gl.drawArrays(gl.LINES, 0, this.lineCount);
+		gl.drawArrays(gl.LINE_STRIP, 0, this.pointCount);
 	}
 }
 
