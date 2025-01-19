@@ -26,8 +26,8 @@ function MatrixMultiply(m1, m2) {
 		for (let j = 0; j < 3; j++) {
 			const target = getIndex(i,j);
 			for (let k = 0; k < 3; k++) {
-				const e1 = m1[getIndex(i,k)];
-				const e2 = m2[getIndex(k,j)];
+				const e1 = m1[getIndex(k,j)];
+				const e2 = m2[getIndex(i,k)];
 				product[target] += e1 * e2;
 			}
 		}
@@ -40,5 +40,6 @@ function MatrixMultiply(m1, m2) {
 // The returned transformation first applies trans1 and then trans2.
 function ApplyTransform( trans1, trans2 )
 {
-	return MatrixMultiply(trans1, trans2);
+	// We can just do this by multiplying trans2 * trans1
+	return MatrixMultiply( trans2, trans1 )
 }
