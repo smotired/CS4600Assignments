@@ -10,6 +10,48 @@
     <canvas id="main-canvas" width="600" height="600">
         Your browser doesn't support JavaScript
     </canvas>
-    <script src="main.js"></script>
+    
+    <!-- Load shaders -->
+<!-- Commenting out because I like my way better
+    <script id="vertexShader" type="x-shader/x-vertex" src="shaders/vertex.vs">
+        precision mediump float;
+        // The vertex shader runs once for each vertex.
+
+        // attributes are variables that we pass in via the buffers
+        attribute vec3 pos; // position of the vertex in 3d space
+        attribute vec4 clr; // color of the vertex
+
+        // uniforms are parameters of the shader itself, used for all vertices
+        uniform mat4 transformation;
+
+        // varyings are sent onward
+        varying vec4 vcolor;
+
+        void main()
+        {
+            // This is the final variable we set to for the rasterizer, representing the position in the canonical view volume
+            // So we apply the transformation matrix
+            gl_Position = transformation * vec4(pos, 1);
+            // pass color from the vertex shader to the fragment shader
+            vcolor = clr;
+        }
+    </script>
+    <script id="fragmentShader" type="x-shader/x-fragment" src="shaders/fragment.vs">
+        precision mediump float;
+        // The fragment shader runs after the rasterizer, once for every pixel
+
+        // GPU automatically interpolates the color for these vertexes
+        varying vec4 vcolor;
+
+        void main()
+        {
+            // This is our final variable for the fragment shader
+            gl_FragColor = vcolor;
+        }
+    </script>
+-->
+
+    <!-- Load main script -->
+    <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
